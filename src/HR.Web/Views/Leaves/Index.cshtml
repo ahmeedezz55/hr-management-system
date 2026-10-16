@@ -1,0 +1,53 @@
+@model IEnumerable<LeaveRequest>
+@{
+    ViewData["Title"] = "الإجازات";
+}
+
+<div class="d-flex justify-content-between mb-3">
+    <h3>طلبات الإجازة</h3>
+    <a class="btn btn-success" asp-action="Create">طلب إجازة</a>
+</div>
+
+<div class="card shadow-sm">
+    <table class="table mb-0 align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>الموظف</th>
+                <th>النوع</th>
+                <th>من</th>
+                <th>إلى</th>
+                <th>الأيام</th>
+                <th>الحالة</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var l in Model)
+        {
+            <tr>
+                <td>@l.Employee.FullNameAr</td>
+                <td>@l.LeaveType</td>
+                <td>@l.StartDate.ToString("yyyy-MM-dd")</td>
+                <td>@l.EndDate.ToString("yyyy-MM-dd")</td>
+                <td>@l.TotalDays</td>
+                <td>
+                    <span class="badge @(l.Status == LeaveStatus.Approved ? "bg-success" : l.Status == LeaveStatus.Rejected ? "bg-danger" : "bg-warning text-dark")">
+                        @l.Status
+                    </span>
+                </td>
+                <td>
+                    @if (l.Status == LeaveStatus.Pending && (User.IsInRole(AppRoles.Admin) || User.IsInRole(AppRoles.Hr) || User.IsInRole(AppRoles.Manager)))
+                    {
+                        <form asp-action="Approve" asp-route-id="@l.Id" method="post" class="d-inline">
+                            <button class="btn btn-sm btn-success" type="submit">اعتماد</button>
+                        </form>
+                        <form asp-action="Reject" asp-route-id="@l.Id" method="post" class="d-inline">
+                            <button class="btn btn-sm btn-outline-danger" type="submit">رفض</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

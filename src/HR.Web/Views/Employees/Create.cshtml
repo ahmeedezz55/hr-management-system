@@ -1,0 +1,18 @@
+@model EmployeeFormViewModel
+@{
+    ViewData["Title"] = "إضافة موظف";
+}
+
+<h3 class="mb-3">إضافة موظف</h3>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <partial name="_Form" model="Model" />
+            <div class="mt-3 d-flex gap-2">
+                <button type="submit" class="btn btn-success">حفظ</button>
+                <a asp-action="Index" class="btn btn-outline-secondary">رجوع</a>
+            </div>
+        </form>
+    </div>
+</div>

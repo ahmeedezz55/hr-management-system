@@ -1,0 +1,16 @@
+@model Employee
+@{
+    ViewData["Title"] = "حذف موظف";
+}
+
+<div class="card border-danger">
+    <div class="card-body">
+        <h4>تأكيد حذف الموظف</h4>
+        <p>هل تريد حذف <strong>@Model.FullNameAr</strong> (@Model.EmployeeNumber) من قسم @Model.Department.NameAr؟</p>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">حذف</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">إلغاء</a>
+        </form>
+    </div>
+</div>

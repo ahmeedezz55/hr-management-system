@@ -1,0 +1,19 @@
+@model EmployeeFormViewModel
+@{
+    ViewData["Title"] = "تعديل موظف";
+}
+
+<h3 class="mb-3">تعديل موظف</h3>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <partial name="_Form" model="Model" />
+            <div class="mt-3 d-flex gap-2">
+                <button type="submit" class="btn btn-primary">تحديث</button>
+                <a asp-action="Index" class="btn btn-outline-secondary">رجوع</a>
+            </div>
+        </form>
+    </div>
+</div>

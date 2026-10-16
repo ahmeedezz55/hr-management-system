@@ -1,0 +1,52 @@
+@model IEnumerable<Attendance>
+@{
+    ViewData["Title"] = "الحضور والانصراف";
+    var workDate = (DateTime)ViewBag.WorkDate;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>الحضور والانصراف</h3>
+    <div class="d-flex gap-2">
+        <form asp-action="CheckIn" method="post">
+            <button class="btn btn-success" type="submit">تسجيل حضور</button>
+        </form>
+        <form asp-action="CheckOut" method="post">
+            <button class="btn btn-outline-success" type="submit">تسجيل انصراف</button>
+        </form>
+    </div>
+</div>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-3">
+        <input type="date" name="date" class="form-control" value="@workDate.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-outline-primary" type="submit">عرض</button>
+    </div>
+</form>
+
+<div class="card shadow-sm">
+    <table class="table mb-0">
+        <thead class="table-light">
+            <tr>
+                <th>الموظف</th>
+                <th>الحضور</th>
+                <th>الانصراف</th>
+                <th>ساعات العمل</th>
+                <th>الحالة</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.Employee.FullNameAr</td>
+                <td>@(a.CheckIn?.ToString("HH:mm") ?? "-")</td>
+                <td>@(a.CheckOut?.ToString("HH:mm") ?? "-")</td>
+                <td>@(a.WorkedHours?.ToString(@"hh\:mm") ?? "-")</td>
+                <td>@a.Status</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

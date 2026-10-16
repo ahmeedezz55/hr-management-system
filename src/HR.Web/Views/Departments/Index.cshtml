@@ -1,0 +1,41 @@
+@model IEnumerable<Department>
+@{
+    ViewData["Title"] = "الأقسام";
+}
+
+<div class="d-flex justify-content-between mb-3">
+    <h3>الأقسام</h3>
+    @if (User.IsInRole(AppRoles.Admin) || User.IsInRole(AppRoles.Hr))
+    {
+        <a class="btn btn-success" asp-action="Create">قسم جديد</a>
+    }
+</div>
+
+<div class="card shadow-sm">
+    <table class="table mb-0">
+        <thead class="table-light">
+            <tr>
+                <th>الرمز</th>
+                <th>الاسم</th>
+                <th>عدد الموظفين</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.Code</td>
+                <td>@d.NameAr <small class="text-muted">/ @d.NameEn</small></td>
+                <td>@d.Employees.Count</td>
+                <td>
+                    @if (User.IsInRole(AppRoles.Admin) || User.IsInRole(AppRoles.Hr))
+                    {
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@d.Id">تعديل</a>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,111 @@
+@model EmployeeFormViewModel
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <label asp-for="EmployeeNumber" class="form-label"></label>
+        <input asp-for="EmployeeNumber" class="form-control" />
+        <span asp-validation-for="EmployeeNumber" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="DepartmentId" class="form-label"></label>
+        <select asp-for="DepartmentId" asp-items="Model.Departments" class="form-select"></select>
+        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Status" class="form-label"></label>
+        <select asp-for="Status" asp-items="Html.GetEnumSelectList<EmploymentStatus>()" class="form-select"></select>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="FirstNameAr" class="form-label"></label>
+        <input asp-for="FirstNameAr" class="form-control" />
+        <span asp-validation-for="FirstNameAr" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="LastNameAr" class="form-label"></label>
+        <input asp-for="LastNameAr" class="form-control" />
+        <span asp-validation-for="LastNameAr" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="FirstNameEn" class="form-label"></label>
+        <input asp-for="FirstNameEn" class="form-control" />
+        <span asp-validation-for="FirstNameEn" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="LastNameEn" class="form-label"></label>
+        <input asp-for="LastNameEn" class="form-control" />
+        <span asp-validation-for="LastNameEn" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="NationalId" class="form-label"></label>
+        <input asp-for="NationalId" class="form-control" maxlength="10" />
+        <span asp-validation-for="NationalId" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="IqamaNumber" class="form-label"></label>
+        <input asp-for="IqamaNumber" class="form-control" />
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Nationality" class="form-label"></label>
+        <input asp-for="Nationality" class="form-control" />
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Gender" class="form-label"></label>
+        <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-select"></select>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="MaritalStatus" class="form-label"></label>
+        <select asp-for="MaritalStatus" asp-items="Html.GetEnumSelectList<MaritalStatus>()" class="form-select"></select>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="DateOfBirth" class="form-label"></label>
+        <input asp-for="DateOfBirth" class="form-control" type="date" />
+    </div>
+    <div class="col-md-3">
+        <label asp-for="HireDate" class="form-label"></label>
+        <input asp-for="HireDate" class="form-control" type="date" />
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Phone" class="form-label"></label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="col-md-4">
+        <label asp-for="City" class="form-label"></label>
+        <input asp-for="City" class="form-control" placeholder="الرياض / جدة / الدمام" />
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Address" class="form-label"></label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="JobTitleAr" class="form-label"></label>
+        <input asp-for="JobTitleAr" class="form-control" />
+        <span asp-validation-for="JobTitleAr" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="JobTitleEn" class="form-label"></label>
+        <input asp-for="JobTitleEn" class="form-control" />
+    </div>
+    <div class="col-md-4">
+        <label asp-for="BasicSalary" class="form-label"></label>
+        <input asp-for="BasicSalary" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="GosiNumber" class="form-label"></label>
+        <input asp-for="GosiNumber" class="form-control" />
+    </div>
+    <div class="col-md-6">
+        <label asp-for="BankIban" class="form-label"></label>
+        <input asp-for="BankIban" class="form-control" placeholder="SA" />
+    </div>
+</div>

@@ -1,0 +1,45 @@
+@model Employee
+@{
+    ViewData["Title"] = "بيانات الموظف";
+}
+
+<div class="d-flex justify-content-between mb-3">
+    <h3>@Model.FullNameAr</h3>
+    <a asp-action="Index" class="btn btn-outline-secondary">رجوع</a>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header">البيانات الشخصية</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-5">رقم الموظف</dt><dd class="col-7">@Model.EmployeeNumber</dd>
+                    <dt class="col-5">الاسم بالإنجليزية</dt><dd class="col-7">@Model.FullNameEn</dd>
+                    <dt class="col-5">رقم الهوية</dt><dd class="col-7">@(Model.NationalId ?? "-")</dd>
+                    <dt class="col-5">رقم الإقامة</dt><dd class="col-7">@(Model.IqamaNumber ?? "-")</dd>
+                    <dt class="col-5">الجنسية</dt><dd class="col-7">@Model.Nationality</dd>
+                    <dt class="col-5">الجوال</dt><dd class="col-7">@(Model.Phone ?? "-")</dd>
+                    <dt class="col-5">البريد</dt><dd class="col-7">@(Model.Email ?? "-")</dd>
+                    <dt class="col-5">المدينة</dt><dd class="col-7">@(Model.City ?? "-")</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header">البيانات الوظيفية</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-5">القسم</dt><dd class="col-7">@Model.Department.NameAr</dd>
+                    <dt class="col-5">المسمى</dt><dd class="col-7">@Model.JobTitleAr</dd>
+                    <dt class="col-5">تاريخ التعيين</dt><dd class="col-7">@Model.HireDate.ToString("yyyy-MM-dd")</dd>
+                    <dt class="col-5">الراتب الأساسي</dt><dd class="col-7">@Model.BasicSalary.ToString("N2") ر.س</dd>
+                    <dt class="col-5">التأمينات</dt><dd class="col-7">@(Model.GosiNumber ?? "-")</dd>
+                    <dt class="col-5">الآيبان</dt><dd class="col-7">@(Model.BankIban ?? "-")</dd>
+                    <dt class="col-5">الحالة</dt><dd class="col-7">@Model.Status</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

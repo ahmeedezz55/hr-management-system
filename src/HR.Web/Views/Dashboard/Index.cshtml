@@ -1,0 +1,49 @@
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "لوحة التحكم";
+}
+
+<h3 class="mb-4">لوحة التحكم</h3>
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="text-muted">إجمالي الموظفين</div>
+                <h2>@Model.TotalEmployees</h2>
+                <small>النشطون: @Model.ActiveEmployees</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="text-muted">الأقسام</div>
+                <h2>@Model.TotalDepartments</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="text-muted">حضور اليوم</div>
+                <h2>@Model.PresentToday</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="text-muted">طلبات إجازة معلّقة</div>
+                <h2>@Model.PendingLeaves</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="text-muted">إجازات معتمدة هذا الشهر</div>
+                <h2>@Model.ApprovedLeavesThisMonth</h2>
+            </div>
+        </div>
+    </div>
+</div>
