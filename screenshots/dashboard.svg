@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#2d6a8f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#g)"/>
+  <rect x="0" y="0" width="1280" height="56" fill="#16304e"/>
+  <text x="1264" y="36" font-family="Segoe UI" font-size="22" fill="#8ab4d8" text-anchor="end">HR Management System</text>
+  <text x="640" y="300" font-family="Segoe UI" font-size="64" fill="#ffffff" text-anchor="middle">📊 لوحة التحكم — Dashboard</text>
+  <text x="640" y="370" font-family="Segoe UI" font-size="28" fill="#b9d4e8" text-anchor="middle">إحصائيات الموظفين والحضور والإجازات</text>
+  <rect x="440" y="430" width="400" height="56" rx="28" fill="none" stroke="#56a0c8" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="640" y="465" font-family="Segoe UI" font-size="24" fill="#9fc4dd" text-anchor="middle">PLACEHOLDER — سكرينشوت قادم</text>
+  <text x="640" y="660" font-family="Segoe UI" font-size="18" fill="#7fa8c4" text-anchor="middle">جاري التقاط لقطة حقيقية لهذه الصفحة ووضعها بهذا الاسم في مجلد screenshots/</text>
+</svg>
