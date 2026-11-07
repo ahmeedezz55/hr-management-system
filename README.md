@@ -136,21 +136,28 @@ dotnet run --project src/HR.Web
 
 ## 📸 Screenshots
 
-لقطات الشاشة متوفرة في مجلد [`screenshots/`](screenshots/) — راجع [دليل التقاطها](screenshots/README.md):
+لقطات الشاشة متوفرة في مجلد## 📸 Screenshots
 
-| الصفحة | الصورة |
-|--------|-------|
-| لوحة التحكم | `screenshots/dashboard.png` ← ![](screenshots/dashboard.svg) |
-| تسجيل الدخول | `screenshots/login.png` ![](screenshots/login.svg) |
-| المساعد الذكي | `screenshots/ai-assistant.png` ![](screenshots/ai-assistant.svg) |
-| الآلة الحاسبة | `screenshots/calculator.png` ![](screenshots/calculator.svg) |
-| الموظفون | `screenshots/employees.png` ![](screenshots/employees.svg) |
-| الإدارات | `screenshots/departments.png` ![](screenshots/departments.svg) |
-| الحضور | `screenshots/attendance.png` ![](screenshots/attendance.svg) |
-| الإجازات | `screenshots/leaves.png` ![](screenshots/leaves.svg) |
-| الوضع الإنجليزي | `screenshots/english-view.png` ![](screenshots/english-view.svg) |
+### لوحة التحكم — Dashboard
+![Dashboard](screenshots/HR%20-%201.png)
 
-## 🗺️ خارطة الطريق
+### تسجيل الدخول — Login
+![Login](screenshots/HR%20-%202.png)
+
+### المساعد الذكي — AI Assistant
+![AI Assistant](screenshots/HR%20-%203.png)
+
+### الآلة الحاسبة — Calculator
+![Calculator](screenshots/HR%20-%204.png)
+
+### الموظفون — Employees
+![Employees](screenshots/HR%20-%205.png)
+
+### الأقسام — Departments
+![Departments](screenshots/HR%20-%206.png)
+
+### الإجازات — Leaves
+![Leaves](screenshots/HR%20-%207.png)## 🗺️ خارطة الطريق
 
 - [ ] كشوف الرواتب ومستحقات نهاية الخدمة
 - [ ] تقارير PDF و Excel
