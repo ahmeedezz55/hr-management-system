@@ -50,6 +50,7 @@ appsettings.Production.json
 # Database files
 *.mdf
 *.ldf
+*.db
 
 # OS files
 .DS_Store

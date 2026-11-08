@@ -14,7 +14,13 @@ public static class DbSeeder
         UserManager<ApplicationUser> userManager,
         RoleManager<IdentityRole> roleManager)
     {
-        if (db.Database.GetMigrations().Any())
+        if (db.Database.IsSqlite())
+        {
+            // SQLite fallback: create the database straight from the model
+            // (SQL Server migrations are not applicable to the SQLite provider).
+            await db.Database.EnsureCreatedAsync();
+        }
+        else if (db.Database.GetMigrations().Any())
         {
             await db.Database.MigrateAsync();
         }

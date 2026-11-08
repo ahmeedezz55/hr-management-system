@@ -10,10 +10,23 @@ namespace HR.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration, bool useSqlite = false)
     {
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        {
+            if (useSqlite)
+            {
+                // SQLite fallback ( Codespaces / no local SQL Server ):
+                // uses EnsureCreated at startup instead of SQL Server migrations.
+                options.UseSqlite(
+                    configuration.GetConnectionString("SqliteConnection")
+                    ?? DatabaseStartup.SqliteFallbackConnectionString);
+            }
+            else
+            {
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            }
+        });
 
         services.AddIdentity<ApplicationUser, IdentityRole>(options =>
         {

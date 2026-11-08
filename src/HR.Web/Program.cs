@@ -9,7 +9,25 @@ using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddInfrastructure(builder.Configuration);
+// ------------------------------------------------------------------
+// Database provider decision:
+//   1) Try the configured SQL Server (with light retries for a cold DB).
+//   2) Fall back to a local SQLite file when SQL Server is unavailable
+//      (e.g. GitHub Codespaces started without the database sidecar).
+// ------------------------------------------------------------------
+using var bootstrapLoggerFactory = LoggerFactory.Create(b => b.AddConsole());
+var sqlServerLogger = bootstrapLoggerFactory.CreateLogger("DatabaseStartup");
+var useSqlite = !await DatabaseStartup.SqlServerReachableAsync(
+    builder.Configuration.GetConnectionString("DefaultConnection"),
+    sqlServerLogger);
+
+if (useSqlite)
+{
+    sqlServerLogger.LogWarning(
+        "سيتم استخدام قاعدة بيانات SQLite محلية (HRSystem.db) بدلاً من SQL Server.");
+}
+
+builder.Services.AddInfrastructure(builder.Configuration, useSqlite);
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
