@@ -11,7 +11,9 @@
   // The service inside .devcontainer/docker-compose.yml that hosts the IDE.
   "service": "dev",
 
-  "workspaceFolder": "/workspace",
+  // The repository is mounted under /workspaces/<repo-name> (GitHub
+  // Codespaces convention) - open the repo itself as the workspace root.
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
   // App (HTTPS + HTTP) and SQL Server ports.
   "forwardPorts": [7188, 5188, 1433],

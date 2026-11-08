@@ -9,9 +9,9 @@ services:
   dev:
     image: mcr.microsoft.com/devcontainers/dotnet:10.0
     command: sleep infinity
-    working_dir: /workspace
+    working_dir: /workspaces/${localWorkspaceFolderBasename}
     volumes:
-      - ../..:/workspace:cached
+      - ../..:/workspaces:cached
     environment:
       # The app inside the container talks directly to the db service.
       ConnectionStrings__DefaultConnection: >-
