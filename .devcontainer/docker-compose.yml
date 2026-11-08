@@ -2,6 +2,10 @@
 # Dev Container compose file - powers GitHub Codespaces / VS Code.
 # Provides the IDE container + a managed SQL Server 2022 sidecar,
 # so no local installation is needed at all.
+#
+# The SA password can be overridden via MSSQL_SA_PASSWORD (host env or
+# a .devcontainer/.env file); the default below is a well-known DEV-ONLY
+# password matching the app's development connection string.
 # =====================================================================
 
 services:
@@ -16,7 +20,7 @@ services:
       # The app inside the container talks directly to the db service.
       ConnectionStrings__DefaultConnection: >-
         Server=db;Database=HRSystem;User Id=sa;
-        Password=Your_password123;
+        Password=${MSSQL_SA_PASSWORD:-Your_password123};
         TrustServerCertificate=True;MultipleActiveResultSets=true
       ASPNETCORE_ENVIRONMENT: Development
     depends_on:
@@ -29,11 +33,13 @@ services:
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_PID: "Developer"
-      MSSQL_SA_PASSWORD: "Your_password123"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:-Your_password123}
     healthcheck:
+      # $$ escapes '$' for compose: expanded INSIDE the container, so it picks
+      # up whatever MSSQL_SA_PASSWORD the service actually runs with.
       test: >-
         /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa
-        -P "Your_password123" -C -Q "SELECT 1" -b -o /dev/null
+        -P "$$MSSQL_SA_PASSWORD" -C -Q "SELECT 1" -b -o /dev/null
       interval: 10s
       timeout: 5s
       retries: 12

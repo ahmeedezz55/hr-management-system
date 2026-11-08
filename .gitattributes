@@ -1,0 +1,4 @@
+# Normalize line endings - shell scripts MUST be LF so they run in Linux
+# containers (Codespaces / Docker); batch files stay as written.
+*.sh     text eol=lf
+*.bat    text eol=crlf
