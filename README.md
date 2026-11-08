@@ -1,13 +1,5 @@
 # نظام إدارة الموارد البشرية | HR Management System
 
-## 👀 عايز تشوف المشروع شغال بدون تثبيت أي حاجة؟
-
-اضغط الزر ده وافتحه في المتصفح مباشرة:
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ahmeedezz55/hr-management-system)
-
-**بيانات الدخول:** `admin@hr.sa` / `Admin@123`
-
 <div dir="rtl">
 
 نظام متكامل لإدارة الموارد البشرية مصمم خصيصاً لسوق العمل السعودي، بواجهة ثنائية اللغة (العربية RTL / الإنجليزية LTR)، يعتمد على **ASP.NET Core MVC** و**Entity Framework Core** مع مساعد ذكي بالذكاء الاصطناعي مدعوم من **Groq**.
@@ -24,7 +16,7 @@
 
 <div dir="rtl">
 
-## ⚡ Quick Start — التشغيل في 30 ثانية
+## ⚡ Quick Start — التشغيل السريع
 
 ### الطريقة الأسرع (Docker) 🐳
 
@@ -39,18 +31,26 @@ docker compose up --build
 
 ### أو الطريقة التقليدية (سكريبت الإعداد) 💻
 
+**Windows (Command Prompt):**
+
+```cmd
+.\setup.bat
+```
+
+**Linux / Mac:**
+
 ```bash
-./setup.bat    # Windows
-./setup.sh     # Linux / Mac   (chmod +x setup.sh أولاً)
+chmod +x setup.sh   # مرة واحدة فقط
+./setup.sh
 ```
 
 ### أو GitHub Codespaces (المتصفح مباشرة، بدون تثبيت أي شيء) ☁️
 
-افتح المستودع → زر **Code** → تبويب **Codespaces** → **Create codespace** → وانتظر التجهيز ثم:
+افتح المستودع → زر **Code** → تبويب **Codespaces** → **Create codespace**، وانتظر التجهيز (2-5 دقائق).
 
-```bash
-dotnet run --project src/HR.Web
-```
+يعمل التطبيق تلقائياً عند اكتمال التجهيز، ويطبّق الـ Migrations والبيانات الأولية تلقائياً، ويفتح البورت 5188 في المتصفح تلقائياً.
+
+ثم سجّل الدخول بـ `admin@hr.sa` / `Admin@123`
 
 راجع `.devcontainer/` للتفاصيل. لتفعيل المساعد الذكي في Codespaces ضع `GROQ_API_KEY` كمتغير بيئة على جهازك أو كـ Secret في المستودع.
 
@@ -64,11 +64,11 @@ dotnet run --project src/HR.Web
 |---------|----------------|-------------|-----------|
 | 🐳 **Docker** | متوسط - متقدم | معزولة تماماً، لا تؤثر على النظام، خطوة واحدة | تحتاج تثبيت Docker Desktop |
 | 💻 **Setup Script** | مبتدئ | سكريبت يتحقق من كل شيء تلقائياً، سريعة للتطوير اليومي | تحتاج .NET SDK و SQL Server على جهازك |
-| ☁️ **Codespaces** | أي مستوى | لا تحتاج تثبيت أي شيء، تعمل من المتصفح | تحتاج إنترنت جيد، محدودة تحساباً (Codespaces) |
+| ☁️ **Codespaces** | أي مستوى | لا تحتاج تثبيت أي شيء، تعمل من المتصفح | تحتاج إنترنت جيد، محدودة بحصة الاستخدام المجانية (Codespaces) |
 
 ---
 
-### 1️⃣ الطريقة الأولى: Docker 🐳 (الأسرع والأأنظف)
+### 1️⃣ الطريقة الأولى: Docker 🐳 (الأسرع والأنظف)
 
 **📋 المتطلبات:**
 - تثبيت [Docker Desktop](https://www.docker.com/products/docker-desktop) (اختر النسخة المناسبة لنظامك: Windows / Mac / Linux)
@@ -119,11 +119,11 @@ docker compose up --build
 2. اكتب الأوامر (استبدل المسار بمسار المشروع على جهازك):
 
 ```cmd
-cd /d D:\HR-System
+cd /d C:\Users\YourName\hr-management-system
 .\setup.bat
 ```
 
-> 📝 إذا لم يكن المشروع في `D:\HR-System`، استبدل المسار بالمسار الصحيح — مثلاً `cd /d C:\Users\YourName\hr-management-system`
+> 📝 المسار في الأمر ده مثال فقط — استبدله بالمسار الفعلي للمشروع على جهازك، أي المسار الذي استنسخت فيه المستودع (مثلاً `cd /d D:\Projects\hr-management-system`).
 > 
 > 🍎 على **Linux/Mac**: `chmod +x setup.sh` مرة واحدة ثم `./setup.sh`
 
@@ -149,31 +149,36 @@ cd /d D:\HR-System
 
 ### 3️⃣ الطريقة الثالثة: GitHub Codespaces ☁️ (المتصفح فقط — بدون أي تثبيت)
 
+> ⚡ **ملخص سريع:** افتح Codespace وانتظر — يعمل التطبيق ويفتح في المتصفح تلقائياً. التفاصيل أدناه.
+
 **🪜 الخطوات خطوة بخطوة:**
 
 1. 📂 افتح المشروع على GitHub: [hr-management-system](https://github.com/ahmeedezz55/hr-management-system)
 2. 🟩 اضغط زر **Code** الأخضر
 3. 🗂️ اختر تبويب **Codespaces**
-4. ▶️ اضغط **Create codespace on main**
-5. ⏳ انتظر 2-5 دقائق حتى تجهز البيئة (سيبنى المشروع تلقائياً — .NET 10 و SQL Server يهيّآن داخل الحاوية)
-6. 💻 سيفتح VS Code داخل المتصفح
-7. 🖊️ افتح Terminal من القائمة أو بالاختصار `Ctrl` + `` ` ``
-8. اكتب الأمر التالي:
-
-```bash
-dotnet run --project src/HR.Web
-```
-
-9. ⏳ انتظر حتى يظهر:
-   ```
-   Now listening on: http://localhost:5188
-   ```
-10. 🌐 سيظهر إشعار بسؤالك عن فتح المنفذ 5188 — اضغط **Open in Browser**، أو افتح الرابط المقترح في تبويب **Ports**
+4. ▶️ اضغط **Create codespace on main** — أو استخدم [الرابط المباشر](https://codespaces.new/ahmeedezz55/hr-management-system)
+5. ⏳ انتظر من 2 إلى 5 دقائق حتى تجهز البيئة:
+   - يُجهَّز .NET 10 SDK و SQL Server 2022 تلقائياً داخل الحاوية
+   - يُنفَّذ `dotnet restore` ثم `dotnet build` تلقائياً
+   - ثم يعمل التطبيق تلقائياً (`postStartCommand`) فيطبّق الـ Migrations والبيانات الأولية تلقائياً
+6. 🌐 ستظهر رسالة **"Open in Browser"** للمنفذ 5188 — وفي الغالب يفتح الموقع تلقائياً. إذا لم يفتح: من تبويب **Ports** اضغط أيقونة الكرة الأرضية 🌐 بجوار 5188
+7. 🔑 سجّل الدخول: `admin@hr.sa` / `Admin@123`
 
 **📝 ملاحظات:**
-- قاعدة البيانات تعمل داخل حاوية مرفقة تلقائياً — لا إعداد يدوي.
-- لتفعيل المساعد الذكي: أضف Secretًا باسم `GROQ_API_KEY` في إعدادات المستودع (Settings → Secrets and variables → Codespaces) أو اضبطه كمتغير بيئة محلياً باسم `GROQ_API_KEY` قبل إنشاء الـ Codespace.
+- قاعدة البيانات (SQL Server 2022 كخدمة جانبية) تعمل داخل حاوية مرفقة تلقائياً — لا إعداد يدوي، وإذا تعذّر الوصول إليها يوجد **تحويل تلقائي إلى SQLite** فلا يتعطل النظام إطلاقاً.
+- لتفعيل المساعد الذكي: أضف Secretًا باسم `GROQ_API_KEY` في إعدادات المستودع (Settings → Secrets and variables → Codespaces) أو اضبطه كمتغير بيئة محلياً باسم `GROQ_API_KEY` قبل إنشاء الـ Codespace. المفتاح **اختياري** — بدونه يعمل كل شيء عدا المساعد.
 - البيانات تُحفظ داخل الـ Codespace نفسه — حذف الـ Codespace يحذف البيانات معه.
+- لتشغيل التطبيق يدوياً بدل التشغيل التلقائي: `dotnet run --project src/HR.Web`
+
+**🔧 حل المشاكل الشائعة في Codespaces:**
+
+| المشكلة | الحل |
+|---------|------|
+| فتح المتصفح قبل اكتمال تجهيز الموقع ("site can't be reached") | انتظر من 10 إلى 30 ثانية ثم حدّث الصفحة (Refresh) — التشغيل الأول يطبّق Migrations + Seed |
+| بطء SQL Server أثناء التجهيز | أمر طبيعي في المرة الأولى (تحميل صورة بحجم ~1.5GB) — انتظر حتى يكتمل فحص الصحة (healthcheck) |
+| "Out of memory" أو توقف SQL Server | اضغط الرمز ⚙️ أعلى صفحة الـ Codespace → **Stop codespace** → غيّر نوع الجهاز إلى **4-core / 8GB RAM** من إعدادات إنشاء الـ Codespace |
+| المنفذ 5188 غير ظاهر في Ports | راجع طرفية (Terminal)‏ «postStartCommand» — عند وجود خطأ أعد تشغيل التطبيق: `dotnet run --project src/HR.Web` |
+| البدء من الصفر | احذف الـ Codespace وأنشئ واحداً جديداً، أو أعد تشغيل التطبيق: `Ctrl+C` ثم الأمر نفسه |
 
 ## ❓ الأسئلة الشائعة (FAQ)
 
@@ -242,7 +247,7 @@ dotnet run --project src/HR.Web
 | قاعدة البيانات | SQL Server 2022 (Code-First + Migrations) |
 | الهوية والأمان | ASP.NET Core Identity |
 | الذكاء الاصطناعي | Groq API (نموذج `openai/gpt-oss-20b`) |
-| المحليّة | Localization & RequestLocalization (ar-SA / en-US) |
+| التعريب | Localization & RequestLocalization (ar-SA / en-US) |
 
 ## 🏗️ بنية المشروع
 
@@ -274,9 +279,7 @@ HR.System.sln
 
 ## 🚀 التثبيت والتشغيل
 
-> 📖 **الطريقة الأسرع؟** راجع قسم [Quick Start](#-quick-start--التشغيل-في-30-ثانية) في أعلى الصفحة (Docker / Setup scripts / Codespaces).
->
-> 🎥 تفضل الفيديو؟ راجع [VIDEO_TUTORIAL.md](VIDEO_TUTORIAL.md) — سيناريو توضيحي كامل بالتوقيتات.
+> 📖 **الطريقة الأسرع؟** راجع قسم [Quick Start](#-quick-start--التشغيل-السريع) في أعلى الصفحة (Docker / Setup scripts / Codespaces).
 
 ### المتطلبات
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
@@ -294,11 +297,8 @@ cd hr-management-system
 dotnet restore HR.System.sln
 dotnet build HR.System.sln
 
-# 3. ضبط قاعدة البيانات (اتصال SQL Server في src/HR.Web/appsettings.json)
-dotnet ef migrations add InitialCreate --project src/HR.Infrastructure --startup-project src/HR.Web --output-dir Data/Migrations
-dotnet ef database update --project src/HR.Infrastructure --startup-project src/HR.Web
-
-# 4. تشغيل (سيتولى الـ Seed تلقائياً للأدوار والإدارات وحساب المدير)
+# 3. تشغيل (ستُطبَّق الـ Migrations والبيانات الأولية تلقائياً عند الإقلاع —
+#    لحساب المدير والأدوار والإدارات)
 dotnet run --project src/HR.Web
 ```
 
@@ -329,7 +329,7 @@ dotnet run --project src/HR.Web
 |------|---------------------|----------------|---------|
 | **Admin (مدير النظام)** | `admin@hr.sa` | `Admin@123` | الوصول الكامل + مرتبط بموظف `EMP-1001` |
 
-> ⚠️ **ملاحظة أمنية:** هذا الحساب للطَرَح **التطويري** فقط — غيّر كلمة المرور فور استخدامك لأي بيئة حقيقية. يمكن إنشاء مستخدمين إضافيين بأدوار `HR`/`Manager`/`Employee` من داخل النظام.
+> ⚠️ **ملاحظة أمنية:** هذا الحساب للتطوير فقط — غيّر كلمة المرور فور استخدامك لأي بيئة حقيقية. يمكن إنشاء مستخدمين إضافيين بأدوار `HR`/`Manager`/`Employee` من داخل النظام.
 
 <div dir="rtl">
 
@@ -362,7 +362,7 @@ dotnet run --project src/HR.Web
 
 - [ ] كشوف الرواتب ومستحقات نهاية الخدمة
 - [ ] تقارير PDF و Excel
-- [ ] تفعيل إشعارات الـ Stream API لجعل المساعد الذكي الفوري (SSE)
+- [ ] ردود فورية للمساعد الذكي عبر Streaming (SSE)
 - [ ] تقارير الإجازات بتقويم ميلادي/هجري
 - [ ] API للتكامل الخارجي مع Swagger UI
 
