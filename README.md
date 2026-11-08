@@ -48,6 +48,159 @@ dotnet run --project src/HR.Web
 
 > 💡 **Variable البيئية للمفتاح:** في كل الطرق أعلاه، مفتاح Groq يُقرأ من متغير البيئة `GROQ_API_KEY` (ملف `.env` مع Docker) — لا حاجة لتعديل أي ملف مُرتكب في Git. راجع `.env.example`.
 
+## 📍 طرق التشغيل بالتفصيل
+
+### 🗂️ اختر الطريقة المناسبة لك
+
+| الطريقة | المستوى المطلوب | المميزات ✅ | العيوب ⚠️ |
+|---------|----------------|-------------|-----------|
+| 🐳 **Docker** | متوسط - متقدم | معزولة تماماً، لا تؤثر على النظام، خطوة واحدة | تحتاج تثبيت Docker Desktop |
+| 💻 **Setup Script** | مبتدئ | سكريبت يتحقق من كل شيء تلقائياً، سريعة للتطوير اليومي | تحتاج .NET SDK و SQL Server على جهازك |
+| ☁️ **Codespaces** | أي مستوى | لا تحتاج تثبيت أي شيء، تعمل من المتصفح | تحتاج إنترنت جيد، محدودة تحساباً (Codespaces) |
+
+---
+
+### 1️⃣ الطريقة الأولى: Docker 🐳 (الأسرع والأأنظف)
+
+**📋 المتطلبات:**
+- تثبيت [Docker Desktop](https://www.docker.com/products/docker-desktop) (اختر النسخة المناسبة لنظامك: Windows / Mac / Linux)
+- بعد التثبيت، تأكد أن Docker Desktop **يعمل** (أيقونة الحوت 🐋 قرب الساعة)
+
+**🪜 الخطوات خطوة بخطوة:**
+
+1. افتح **Command Prompt**: اضغط `Win + R` → اكتب `cmd` → اضغط `Enter`
+2. الصق الأوامر التالية واحداً تلو الآخر:
+
+```cmd
+git clone https://github.com/ahmeedezz55/hr-management-system.git
+cd hr-management-system
+docker compose up --build
+```
+
+3. ⏳ **انتظر 2-3 دقائق** — سترى في الشاشة:
+   - تحميل صورة SQL Server 2022 ثم صورة التطبيق
+   - ثم سطراً مشابهاً لـ:
+   
+   ```
+   hr-web     | Now listening on: http://[::]:8080
+   ```
+
+4. 🌐 افتح المتصفح على: **http://localhost:8080**
+5. 🔑 سجّل الدخول: `admin@hr.sa` / `Admin@123`
+
+**📝 ملاحظات:**
+- الـ **Migrations والبيانات الأولية تُطبَّق تلقائياً** عند الإقلاع الأول — لا توجد خطوات قاعدة بيانات يدوية.
+- (اختياري) لتفعيل المساعد الذكي: انسخ `.env.example` إلى `.env` وضع مفتاح Groq فيه مرة واحدة:
+  ```cmd
+  copy .env.example .env
+  ```
+  ثم عدّل `GROQ_API_KEY` في الملف وأعد التشغيل.
+- لإيقاف النظام: اضغط `Ctrl + C` في النافذة، ولحذف البيانات نهائياً: `docker compose down -v`
+
+---
+
+### 2️⃣ الطريقة الثانية: التشغيل المباشر 💻 (بدون Docker)
+
+**📋 المتطلبات:**
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) — السكريبت **يتحقق** من وجوده ويعطيك رابط التثبيت إذا لم يكن موجوداً
+- SQL Server (Express أو LocalDB أو أي إصدار) — السكريبت **يتحقق** من الاتصال به أيضاً
+
+**🪜 الخطوات خطوة بخطوة:**
+
+1. افتح **Command Prompt**: `Win + R` → `cmd` → `Enter`
+2. اكتب الأوامر (استبدل المسار بمسار المشروع على جهازك):
+
+```cmd
+cd /d D:\HR-System
+.\setup.bat
+```
+
+> 📝 إذا لم يكن المشروع في `D:\HR-System`، استبدل المسار بالمسار الصحيح — مثلاً `cd /d C:\Users\YourName\hr-management-system`
+> 
+> 🍎 على **Linux/Mac**: `chmod +x setup.sh` مرة واحدة ثم `./setup.sh`
+
+3. ✅ سيقوم السكريبت تلقائياً بـ:
+   - ✅ التحقق من تثبيت .NET 10 SDK
+   - ✅ التحقق من الاتصال بـ SQL Server
+   - ✅ إنشاء `appsettings.Development.json` إن لم يوجد
+   - ✅ تثبيت أداة `dotnet-ef` (إن لزم) وتطبيق الـ Migrations
+   - ✅ بناء المشروع وتشغيله
+
+4. ⏳ انتظر حتى تظهر:
+   ```
+   Now listening on: http://localhost:5188
+   Now listening on: https://localhost:7188
+   ```
+5. 🌐 افتح المتصفح على: **http://localhost:5188** (أو **https://localhost:7188**)
+6. 🔑 سجّل الدخول: `admin@hr.sa` / `Admin@123`
+
+**📝 ملاحظات:**
+- إذا ظهر خطأ اتصال بقاعدة البيانات: عدّل `ConnectionStrings` في `src/HR.Web/appsettings.json` بما يناسب نسخة SQL Server لديك.
+- لتفعيل المساعد الذكي: ضع مفتاح Groq في `src/HR.Web/appsettings.Development.json` (الملف مُهمَل من Git تلقائياً).
+
+---
+
+### 3️⃣ الطريقة الثالثة: GitHub Codespaces ☁️ (المتصفح فقط — بدون أي تثبيت)
+
+**🪜 الخطوات خطوة بخطوة:**
+
+1. 📂 افتح المشروع على GitHub: [hr-management-system](https://github.com/ahmeedezz55/hr-management-system)
+2. 🟩 اضغط زر **Code** الأخضر
+3. 🗂️ اختر تبويب **Codespaces**
+4. ▶️ اضغط **Create codespace on main**
+5. ⏳ انتظر 2-5 دقائق حتى تجهز البيئة (سيبنى المشروع تلقائياً — .NET 10 و SQL Server يهيّآن داخل الحاوية)
+6. 💻 سيفتح VS Code داخل المتصفح
+7. 🖊️ افتح Terminal من القائمة أو بالاختصار `Ctrl` + `` ` ``
+8. اكتب الأمر التالي:
+
+```bash
+dotnet run --project src/HR.Web
+```
+
+9. ⏳ انتظر حتى يظهر:
+   ```
+   Now listening on: http://localhost:5188
+   ```
+10. 🌐 سيظهر إشعار بسؤالك عن فتح المنفذ 5188 — اضغط **Open in Browser**، أو افتح الرابط المقترح في تبويب **Ports**
+
+**📝 ملاحظات:**
+- قاعدة البيانات تعمل داخل حاوية مرفقة تلقائياً — لا إعداد يدوي.
+- لتفعيل المساعد الذكي: أضف Secretًا باسم `GROQ_API_KEY` في إعدادات المستودع (Settings → Secrets and variables → Codespaces) أو اضبطه كمتغير بيئة محلياً باسم `GROQ_API_KEY` قبل إنشاء الـ Codespace.
+- البيانات تُحفظ داخل الـ Codespace نفسه — حذف الـ Codespace يحذف البيانات معه.
+
+## ❓ الأسئلة الشائعة (FAQ)
+
+### 🖥️ عام
+
+**س: ماذا أفعل إذا ظهر خطأ "Port already in use"?**
+**ج:** المنفذ مستخدَم بالفعل من برنامج آخر (غالباً نسخة قديمة من التطبيق تعمل في الخلفية). الحلول بالترتيب:
+1. `Ctrl + C` على أي Command Prompt آخر شغّال فيه المشروع
+2. أو أعد تشغيل الجهاز إذا لم تعرف مصدر البرنامج
+3. أو بدّل المنفذ: في Docker غيّر `"8080:8080"` في `docker-compose.yml` (الجهة اليسرى فقط، مثلاً `"9080:8080"`) — وفي التشغيل المباشر عدّل `http://localhost:5188` داخل `src/HR.Web/Properties/launchSettings.json`
+
+**س: ماذا أفعل إذا فشل الاتصال بقاعدة البيانات؟**
+**ج:** بالترتيب حسب طريقتك:
+- 🐳 **Docker**: تأكد أن حاوية SQL Server تعمل: `docker compose ps` — يجب أن تكون بحالة `(healthy)`، وللاستقصاء: `docker compose logs db`
+- 💻 **تشغيل مباشر**: تأكد أن خدمة SQL Server تعمل — من قائمة Start افتح **Services** (`services.msc`) وتأكد أن `SQL Server (SQLEXPRESS)` بحالة `Running`
+- عدّل الـ `ConnectionStrings` في `src/HR.Web/appsettings.json` إن كان اسم السيرفر/النسخة مختلفاً
+
+**س: كيف أوقف المشروع؟**
+**ج:** في نافذة الـ Terminal اضغط **`Ctrl + C`** — ولإيقاف Docker بالكامل (مع القاعدة): `docker compose stop`
+
+**س: المساعد الذكي لا يعمل ويعرض "مفتاح Groq غير صحيح"?**
+**ج:** المفتاح غير مضبوط. أضفه حسب طريقتك: `.env` على مسار المستودع (Docker) أو `appsettings.Development.json` (تشغيل مباشر) أو Secret باسم `GROQ_API_KEY` (Codespaces) — ثم أعد التشغيل. مفتاح مجاني من [Groq Console](https://console.groq.com/keys).
+
+### 🗄️ البيانات
+
+**س: أين يتم حفظ البيانات؟**
+**ج:** في قاعدة بيانات **SQL Server** باسم `HRSystem`:
+- 🐳 Docker: داخل Volume مستمر على جهازك (`hr-system_mssql_data`) — لا تُضيع عند إعادة التشغيل
+- 💻 مباشرة: في SQL Server المثبّت على جهازك
+- ☁️ Codespaces: داخل الـ Codespace نفسه — تُحذف مع حذف الـ Codespace
+
+**س: كيف أفرّغ البيانات وبدء من الصفر؟**
+**ج:** 🐳 Docker: `docker compose down -v` ثم `docker compose up --build` — 💻 مباشرة: احذف القاعدة `HRSystem` (من SSMS أو sqlcmd) ثم أعد تشغيل التطبيق وسيُبنى تلقائياً بالـ Seed.
+
 ## ✨ المميزات
 
 ### 🖥️ إدارة النظام
@@ -170,7 +323,7 @@ dotnet run --project src/HR.Web
 
 ## 📸 Screenshots
 
-لقطات الشاشة متوفرة في مجلد## 📸 Screenshots
+لقطات الشاشة متوفرة في مجلد [`screenshots/`](screenshots/):
 
 ### لوحة التحكم — Dashboard
 ![Dashboard](screenshots/HR%20-%201.png)
@@ -191,7 +344,9 @@ dotnet run --project src/HR.Web
 ![Departments](screenshots/HR%20-%206.png)
 
 ### الإجازات — Leaves
-![Leaves](screenshots/HR%20-%207.png)## 🗺️ خارطة الطريق
+![Leaves](screenshots/HR%20-%207.png)
+
+## 🗺️ خارطة الطريق
 
 - [ ] كشوف الرواتب ومستحقات نهاية الخدمة
 - [ ] تقارير PDF و Excel
