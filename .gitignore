@@ -51,6 +51,8 @@ appsettings.Production.json
 *.mdf
 *.ldf
 *.db
+*.db-shm
+*.db-wal
 
 # OS files
 .DS_Store
