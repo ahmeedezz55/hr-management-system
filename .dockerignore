@@ -1,0 +1,27 @@
+# Git
+.git/
+.gitignore
+.github/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build output
+**/bin/
+**/obj/
+
+# Secrets / local config
+.env
+src/HR.Web/appsettings.Development.json
+src/HR.Web/appsettings.Production.json
+
+# Docs and screenshots (not needed inside the image)
+README.md
+screenshots/
+.devcontainer/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

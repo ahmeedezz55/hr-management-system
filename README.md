@@ -16,6 +16,38 @@
 
 <div dir="rtl">
 
+## ⚡ Quick Start — التشغيل في 30 ثانية
+
+### الطريقة الأسرع (Docker) 🐳
+
+```bash
+git clone https://github.com/ahmeedezz55/hr-management-system.git
+cd hr-management-system
+docker compose up --build
+```
+
+ثم افتح 👉 **http://localhost:8080** — بيانات الدخول: `admin@hr.sa` / `Admin@123`
+> الـ Migrations والبيانات الأولية تُطبَّق تلقائياً عند الإقلاع — لا حاجة لأي خطوة إضافية.
+
+### أو الطريقة التقليدية (سكريبت الإعداد) 💻
+
+```bash
+./setup.bat    # Windows
+./setup.sh     # Linux / Mac   (chmod +x setup.sh أولاً)
+```
+
+### أو GitHub Codespaces (المتصفح مباشرة، بدون تثبيت أي شيء) ☁️
+
+افتح المستودع → زر **Code** → تبويب **Codespaces** → **Create codespace** → وانتظر التجهيز ثم:
+
+```bash
+dotnet run --project src/HR.Web
+```
+
+راجع `.devcontainer/` للتفاصيل. لتفعيل المساعد الذكي في Codespaces ضع `GROQ_API_KEY` كمتغير بيئة على جهازك أو كـ Secret في المستودع.
+
+> 💡 **Variable البيئية للمفتاح:** في كل الطرق أعلاه، مفتاح Groq يُقرأ من متغير البيئة `GROQ_API_KEY` (ملف `.env` مع Docker) — لا حاجة لتعديل أي ملف مُرتكب في Git. راجع `.env.example`.
+
 ## ✨ المميزات
 
 ### 🖥️ إدارة النظام
@@ -78,6 +110,8 @@ HR.System.sln
 **نمط البناء:** Clean Architecture — كل اتجاه الاعتماد للداخل: `HR.Web → HR.Infrastructure → HR.Domain`
 
 ## 🚀 التثبيت والتشغيل
+
+> 📖 **الطريقة الأسرع؟** راجع قسم [Quick Start](#-quick-start--التشغيل-في-30-ثانية) في أعلى الصفحة (Docker / Setup scripts / Codespaces).
 
 ### المتطلبات
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)

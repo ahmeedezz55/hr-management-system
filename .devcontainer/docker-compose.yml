@@ -1,0 +1,40 @@
+# =====================================================================
+# Dev Container compose file - powers GitHub Codespaces / VS Code.
+# Provides the IDE container + a managed SQL Server 2022 sidecar,
+# so no local installation is needed at all.
+# =====================================================================
+
+services:
+  # IDE / development environment
+  dev:
+    image: mcr.microsoft.com/devcontainers/dotnet:10.0
+    command: sleep infinity
+    working_dir: /workspace
+    volumes:
+      - ../..:/workspace:cached
+    environment:
+      # The app inside the container talks directly to the db service.
+      ConnectionStrings__DefaultConnection: >-
+        Server=db;Database=HRSystem;User Id=sa;
+        Password=Your_password123;
+        TrustServerCertificate=True;MultipleActiveResultSets=true
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # SQL Server 2022 sidecar
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      MSSQL_SA_PASSWORD: "Your_password123"
+    healthcheck:
+      test: >-
+        /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa
+        -P "Your_password123" -C -Q "SELECT 1" -b -o /dev/null
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s

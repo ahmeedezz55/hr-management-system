@@ -2,11 +2,13 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HR.Web.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class AiController : ControllerBase
 {

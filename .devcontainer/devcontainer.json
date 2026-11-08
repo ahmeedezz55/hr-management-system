@@ -1,0 +1,43 @@
+{
+  // =====================================================================
+  // GitHub Codespaces / VS Code Dev Container
+  // Open this repo in the browser (Codespaces) or VS Code and everything
+  // (.NET 10 SDK + SQL Server) is provisioned automatically - "1-click".
+  // =====================================================================
+  "name": "HR Management System",
+
+  "dockerComposeFile": "docker-compose.yml",
+
+  // The service inside .devcontainer/docker-compose.yml that hosts the IDE.
+  "service": "dev",
+
+  "workspaceFolder": "/workspace",
+
+  // App (HTTPS + HTTP) and SQL Server ports.
+  "forwardPorts": [7188, 5188, 1433],
+
+  // Restore + build immediately after the container is created.
+  "postCreateCommand": "dotnet restore HR.System.sln && dotnet build HR.System.sln && dotnet tool install --local dotnet-ef || true",
+
+  // Run the app from the terminal:
+  //   dotnet run --project src/HR.Web
+  // DB migrations + seed data apply automatically at startup.
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.vscode-dotnetruntime"
+      ]
+    }
+  },
+
+  // Optional: pass your Groq API key from the local machine into the
+  // Codespace (set GROQ_API_KEY in your environment first).
+  "remoteEnv": {
+    "Groq__ApiKey": "${localEnv:GROQ_API_KEY}"
+  },
+
+  "remoteUser": "vscode"
+}
