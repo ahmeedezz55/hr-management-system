@@ -1,5 +1,13 @@
 # نظام إدارة الموارد البشرية | HR Management System
 
+## 👀 عايز تشوف المشروع شغال بدون تثبيت أي حاجة؟
+
+اضغط الزر ده وافتحه في المتصفح مباشرة:
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ahmeedezz55/hr-management-system)
+
+**بيانات الدخول:** `admin@hr.sa` / `Admin@123`
+
 <div dir="rtl">
 
 نظام متكامل لإدارة الموارد البشرية مصمم خصيصاً لسوق العمل السعودي، بواجهة ثنائية اللغة (العربية RTL / الإنجليزية LTR)، يعتمد على **ASP.NET Core MVC** و**Entity Framework Core** مع مساعد ذكي بالذكاء الاصطناعي مدعوم من **Groq**.
@@ -9,10 +17,6 @@
 [![SQL Server](https://img.shields.io/badge/SQL%20Server-2022-CC2927?logo=microsoftsqlserver)](https://www.microsoft.com/sql-server)
 [![Groq AI](https://img.shields.io/badge/AI-Groq-F55036)](https://groq.com)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-
-**☁️ بضغطة زر واحدة — شغّل المشروع في متصفحك الآن بدون أي تثبيت:**
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ahmeedezz55/hr-management-system?quickstart=1)
 
 </div>
 
@@ -172,81 +176,6 @@ dotnet run --project src/HR.Web
 - لتفعيل المساعد الذكي: أضف Secretًا باسم `GROQ_API_KEY` في إعدادات المستودع (Settings → Secrets and variables → Codespaces) أو اضبطه كمتغير بيئة محلياً باسم `GROQ_API_KEY` قبل إنشاء الـ Codespace.
 - البيانات تُحفظ داخل الـ Codespace نفسه — حذف الـ Codespace يحذف البيانات معه.
 
-## 🎓 للمبتدئين تماماً (خطوة بخطوة مع الصور)
-
-<div dir="rtl">
-
-إذا لم تكن تعرف كيف تشغّل المشروع إطلاقاً، اتبع الخطوات التالية بالترتيب (6 خطوات فقط — 5 دقائق):
-
-### 🖼️ الخطوة 1: تحميل المشروع
-
-1. اضغط على الزر الأخضر **"Code"** في أعلى صفحة المشروع
-2. اضغط **"Download ZIP"**
-3. فك الضغط عن الملف في أي مكان على جهازك (مثلاً `D:\HR-System`)
-
-![الخطوة 1: تحميل المشروع](screenshots/setup-guide/step1-download.png)
-
-### 🖼️ الخطوة 2: فتح Command Prompt
-
-1. اضغط على زر **Windows** في الكيبورد
-2. اكتب: `cmd`
-3. اضغط **Enter**
-
-![الخطوة 2: فتح Command Prompt](screenshots/setup-guide/step2-cmd.png)
-
-### 🖼️ الخطوة 3: الذهاب لمجلد المشروع
-
-في نافذة الـ Command Prompt اكتب:
-
-```cmd
-cd /d D:\HR-System
-```
-
-> ⚠️ **مهم**: استبدل `D:\HR-System` بالمسار الفعلي حيث فكّكت الضغط — أسهل طريقة: افتح المجلد في مستكشف الملفات، اضغط على شريط العنوان أعلى النافذة، انسخ المسار، والصقه في الأمر بدل `D:\HR-System`
-
-![الخطوة 3: الذهاب لمجلد المشروع](screenshots/setup-guide/step3-cd.png)
-
-### 🖼️ الخطوة 4: تشغيل المشروع
-
-اكتب الأمر التالي واضغط Enter:
-
-```cmd
-.\setup.bat
-```
-
-⏳ انتظر حتى تظهر رسالة مشابهة لـ:
-
-```
-Now listening on: http://localhost:5188
-```
-
-> ⚠️ لا تغلق النافذة السوداء بينما المشروع يعمل — هي خادم الويب نفسه
-
-![الخطوة 4: تشغيل المشروع](screenshots/setup-guide/step4-setup.png)
-
-### 🖼️ الخطوة 5: فتح الموقع
-
-1. افتح المتصفح (Chrome أو Edge)
-2. اكتب في شريط العنوان: `http://localhost:5188`
-3. اضغط **Enter** 🎉
-
-![الخطوة 5: فتح الموقع](screenshots/setup-guide/step5-browser.png)
-
-### 🖼️ الخطوة 6: تسجيل الدخول
-
-| الحقل | القيمة |
-|-------|--------|
-| البريد الإلكتروني 📧 | `admin@hr.sa` |
-| كلمة المرور 🔑 | `Admin@123` |
-
-أدخل بيانات الدخول ثم اضغط زر تسجيل الدخول — وستنتقل مباشرة إلى لوحة التحكم 🎊
-
-![الخطوة 6: تسجيل الدخول](screenshots/setup-guide/step6-login.png)
-
-> 📸 الصور أعلاه حالياً **Placeholders** — استبدلها بلقطات شاشة حقيقية بنفس الأسماء في مجلد [`screenshots/setup-guide/`](screenshots/setup-guide/) (راجع الدليل داخله).
-
-> 🎥 تفضل الفيديو على النص؟ راجع [`VIDEO_TUTORIAL.md`](VIDEO_TUTORIAL.md) — سيناريو فيديو توضيحي كامل بالتوقيتات (وسيُضاف رابط الفيديو عند نشره).
-
 ## ❓ الأسئلة الشائعة (FAQ)
 
 ### 🖥️ عام
@@ -344,6 +273,8 @@ HR.System.sln
 ## 🚀 التثبيت والتشغيل
 
 > 📖 **الطريقة الأسرع؟** راجع قسم [Quick Start](#-quick-start--التشغيل-في-30-ثانية) في أعلى الصفحة (Docker / Setup scripts / Codespaces).
+>
+> 🎥 تفضل الفيديو؟ راجع [VIDEO_TUTORIAL.md](VIDEO_TUTORIAL.md) — سيناريو توضيحي كامل بالتوقيتات.
 
 ### المتطلبات
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
