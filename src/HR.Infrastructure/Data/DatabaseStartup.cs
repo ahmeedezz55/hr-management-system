@@ -47,6 +47,12 @@ public static class DatabaseStartup
             ? connectionString
             : $"{connectionString};Connect Timeout={connectTimeoutSeconds}";
 
+        // Probe the *server*, not the application database: on a fresh SQL
+        // Server container the app database (HRSystem) does not exist yet and
+        // EF MigrateAsync will create it. Probing the app DB directly would
+        // wrongly report the whole server as unreachable.
+        cs = BuildProbeConnectionString(cs);
+
         for (var attempt = 1; attempt <= attempts; attempt++)
         {
             try
@@ -78,5 +84,26 @@ public static class DatabaseStartup
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Rewrites the connection string to open the "master" system database
+    /// instead of the application database, so that a reachable server with
+    /// a not-yet-created database still counts as reachable.
+    /// </summary>
+    private static string BuildProbeConnectionString(string connectionString)
+    {
+        // Match Database=HRSystem / DB name with or without spaces after '='.
+        var probe = System.Text.RegularExpressions.Regex.Replace(
+            connectionString,
+            @"(?i)(Database|Initial Catalog)\s*=\s*[^;]*",
+            "$1=master");
+
+        if (!string.Equals(probe, connectionString, StringComparison.Ordinal))
+        {
+            probe += ";"; // keep key-value separation intact
+        }
+
+        return probe;
     }
 }
