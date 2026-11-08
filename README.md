@@ -137,9 +137,8 @@ cd /d D:\HR-System
 4. ⏳ انتظر حتى تظهر:
    ```
    Now listening on: http://localhost:5188
-   Now listening on: https://localhost:7188
    ```
-5. 🌐 افتح المتصفح على: **http://localhost:5188** (أو **https://localhost:7188**)
+5. 🌐 افتح المتصفح على: **http://localhost:5188**
 6. 🔑 سجّل الدخول: `admin@hr.sa` / `Admin@123`
 
 **📝 ملاحظات:**
@@ -303,7 +302,7 @@ dotnet ef database update --project src/HR.Infrastructure --startup-project src/
 dotnet run --project src/HR.Web
 ```
 
-ثُم افتح: **https://localhost:7188** (أو المنفذ الموضح في نافذة التشغيل)
+ثُم افتح: **http://localhost:5188** (أو المنفذ الموضح في نافذة التشغيل)
 
 ### تفعيل المساعد الذكي 🔐
 أنشئ الملف `src/HR.Web/appsettings.Development.json` (لن يُرسل للـ Git):
